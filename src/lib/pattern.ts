@@ -34,8 +34,7 @@ export type Term = {
 	video?: string;
 };
 
-export const crafts = ['crochet', 'knitting'] as const;
-export type Craft = (typeof crafts)[number];
+export type Craft = 'crochet' | 'knitting';
 
 export type Pattern = {
 	slug: string;
