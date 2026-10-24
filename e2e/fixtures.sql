@@ -28,3 +28,13 @@ INSERT INTO pattern (slug, title, designer, data, created_at) VALUES ('test-bear
 		}
 	]
 }', '2026-10-24T00:00:00.000Z');
+INSERT INTO pattern (slug, title, designer, data, created_at) VALUES ('test-scarf', 'Test Scarf', 'Another', '{
+	"slug": "test-scarf",
+	"title": "Test Scarf",
+	"designer": "Another",
+	"craft": "knitting",
+	"notes": [],
+	"materials": ["Yarn", "5 mm needles"],
+	"terms": [{ "abbr": "k", "meaning": "Knit" }],
+	"sections": [{ "id": "body", "name": "Body", "steps": [{ "id": "r1", "text": "k to end" }] }]
+}', '2026-10-24T00:00:00.000Z');

@@ -1,8 +1,25 @@
 <script lang="ts">
-	import { imageUrl } from '#lib/pattern.ts';
+	import { imageUrl, type Craft } from '#lib/pattern.ts';
 	import type { PageProps } from './$types';
 
 	let { data }: PageProps = $props();
+
+	let query = $state('');
+	let craft = $state<'all' | Craft>('all');
+	const tabs = [
+		['all', 'All'],
+		['crochet', 'Crochet'],
+		['knitting', 'Knitting']
+	] as const;
+
+	const shown = $derived.by(() => {
+		const words = query.toLowerCase().split(/\s+/).filter(Boolean);
+		return data.patterns.filter(
+			(p) =>
+				(craft === 'all' || p.craft === craft) &&
+				words.every((w) => `${p.title} ${p.designer}`.toLowerCase().includes(w))
+		);
+	});
 </script>
 
 <svelte:head>
@@ -14,10 +31,26 @@
 
 	{#if !data.patterns.length}
 		<p class="card empty muted">No patterns yet.</p>
+	{:else}
+		<input
+			class="search"
+			type="search"
+			placeholder="Search patterns"
+			aria-label="Search patterns"
+			bind:value={query}
+		/>
+		<div class="segments" role="radiogroup" aria-label="Craft">
+			{#each tabs as [value, name] (value)}
+				<label><input type="radio" name="craft" {value} bind:group={craft} />{name}</label>
+			{/each}
+		</div>
+		{#if !shown.length}
+			<p class="card empty muted">No patterns match.</p>
+		{/if}
 	{/if}
 
 	<ul class="patterns">
-		{#each data.patterns as p (p.slug)}
+		{#each shown as p (p.slug)}
 			{@const pct = p.total ? Math.round((p.done / p.total) * 100) : 0}
 			<li>
 				<a class="card" href="/p/{p.slug}">
@@ -39,6 +72,14 @@
 </main>
 
 <style>
+	.search {
+		min-height: 48px;
+		padding: 10px 14px;
+		border-radius: 12px;
+		border: 1.5px solid var(--field);
+		background: var(--card);
+		font-size: 17px;
+	}
 	.patterns {
 		list-style: none;
 		margin: 0;

@@ -1,4 +1,4 @@
-// A crochet pattern as steps to tick off, and how far someone has got.
+// A crochet or knitting pattern as steps to tick off, and how far someone has got.
 // Pure, so the pages and the server share it and it's unit tested.
 
 export type Step = {
@@ -34,10 +34,15 @@ export type Term = {
 	video?: string;
 };
 
+export const crafts = ['crochet', 'knitting'] as const;
+export type Craft = (typeof crafts)[number];
+
 export type Pattern = {
 	slug: string;
 	title: string;
 	designer: string;
+	/** Missing means crochet. */
+	craft?: Craft;
 	cover?: string;
 	summary?: string;
 	notes: string[];

@@ -21,6 +21,7 @@ export async function listPatterns(db: DB, userId: number) {
 				slug: row.slug,
 				title: row.title,
 				designer: row.designer,
+				craft: data.craft ?? 'crochet',
 				cover: data.cover ?? null,
 				...totals(data, await progressOf(db, userId, row.id))
 			};

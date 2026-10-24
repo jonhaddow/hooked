@@ -1,6 +1,6 @@
 ---
 name: import-pattern
-description: Turn a crochet pattern PDF into a Hooked pattern (steps, photos, abbreviations) and load it into the app, or fix one already in. Use when Jon or Mollie sends a pattern PDF, asks to import or add a pattern, or reports a wrong step or photo.
+description: Turn a crochet or knitting pattern PDF into a Hooked pattern (steps, photos, abbreviations) and load it into the app, or fix one already in. Use when Jon or Mollie sends a pattern PDF, asks to import or add a pattern, or reports a wrong step or photo.
 ---
 
 # Import a pattern
@@ -23,6 +23,7 @@ Read the `text.txt`, `pages.png` and `sheet.png` it names. Photos are `<page>-<n
 
 Copy the shape of `patterns/rose-dirt-baby/pattern.json` (if missing: `$CF node scripts/export-pattern.ts rose-dirt-baby --remote`).
 
+- `craft`: `"crochet"` or `"knitting"` (hooks and sc/dc → crochet; needles and k/p → knitting). It picks the list tab the pattern shows under; missing means crochet.
 - A section per part, in making order; assembly and optional extras (face details, `optional: true`) are sections too. "Make 4" is `make: 4`.
 - A step per round or per thing to tick: turns, slip stitches between rounds, stuffing, placing eyes. "Rnd 6–12" is one step with `times: 7`. Keep stitch instructions exactly as written; side notes become `tip`.
 - Ids short and stable (`r1`, `turn`): ticks are keyed by them.

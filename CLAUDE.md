@@ -1,6 +1,6 @@
 # Hooked
 
-Crochet patterns as checklists, like a cookbook app: each round or step is ticked off, repeated rounds count up, "Make 4" parts are ticked per copy, and abbreviations open their how-to. A PWA at https://hooked.app.haddow.me, for Jon's household.
+Crochet and knitting patterns as checklists, like a cookbook app: each round or step is ticked off, repeated rounds count up, "Make 4" parts are ticked per copy, and abbreviations open their how-to. A PWA at https://hooked.app.haddow.me, for Jon's household.
 
 Stack, workflow, commands and shared gotchas: the `app-stack` skill.
 

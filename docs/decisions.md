@@ -9,3 +9,4 @@
 - **Optional parts** (face details) don't count towards the percentage, and come last for "Carry on".
 - **Its own look**: Nunito, warm oatmeal and a rose red, like the yarn. Budget's floating tab bar.
 - **No push notifications**: nothing time-based to remind about.
+- **Crochet and knitting** (October 2026): a pattern's `craft` sits in its JSON (missing means crochet), not a column, so no migration and old patterns need no re-import. The list has All / Crochet / Knitting tabs and a search over title and designer, filtered on the phone: there are only a handful of patterns.
