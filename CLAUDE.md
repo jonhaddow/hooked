@@ -2,8 +2,6 @@
 
 Crochet and knitting patterns as checklists, like a cookbook app: each round or step is ticked off, repeated rounds count up, "Make 4" parts are ticked per copy, and abbreviations open their how-to. A PWA at https://hooked.app.haddow.me, for Jon's household.
 
-Stack, workflow, commands and shared gotchas: the `app-stack` skill.
-
 ## Worth knowing
 
 - `src/lib/pattern.ts` is the pattern shape and the progress maths (totals, next step, abbreviation links): pure and unit tested, keep it that way.
