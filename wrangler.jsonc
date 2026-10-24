@@ -26,7 +26,7 @@
 			// Created with --jurisdiction eu, so the data stays in the EU.
 			"binding": "DB",
 			"database_name": "hooked",
-			"database_id": "TBD",
+			"database_id": "6fc381e2-53b8-4d5a-8b1b-904695d89b71",
 			"migrations_dir": "drizzle"
 		}
 	]
