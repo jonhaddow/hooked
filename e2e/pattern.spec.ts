@@ -54,8 +54,8 @@ test('explains abbreviations', async ({ page }) => {
 
 test('starts again', async ({ page }) => {
 	await open(page, '/p/test-bear');
-	page.once('dialog', (d) => d.accept());
 	await page.getByRole('button', { name: 'Start again' }).click();
+	await page.getByRole('dialog').getByRole('button', { name: 'Clear my ticks' }).click();
 	await expect(page.getByText('0 of 7 rounds and steps')).toBeVisible();
 	await page.reload();
 	await expect(page.getByText('0 of 7 rounds and steps')).toBeVisible();
