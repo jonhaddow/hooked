@@ -18,11 +18,14 @@ const pattern = JSON.parse(readFileSync(`${dir}/pattern.json`, 'utf8')) as {
 	slug: string;
 	title: string;
 	designer: string;
+	craft?: string;
 	cover?: string;
 	terms: Named[];
 	sections: { id: string; steps: ({ id: string } & Named)[] }[];
 };
 if (pattern.slug !== slug) throw new Error(`pattern.json's slug is ${pattern.slug}`);
+if (pattern.craft && !['crochet', 'knitting'].includes(pattern.craft))
+	throw new Error(`craft is ${pattern.craft}: crochet or knitting`);
 
 const files = readdirSync(`${dir}/images`).filter((f) => f.endsWith('.jpg'));
 const names = new Set(files.map((f) => f.slice(0, -4)));
