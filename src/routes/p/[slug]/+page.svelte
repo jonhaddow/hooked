@@ -74,8 +74,12 @@
 		tap(key, step);
 	}
 
+	// Asked in a sheet, not confirm(): some phone browsers (in-app ones, home-screen
+	// apps) block confirm() and it quietly returns false.
+	let confirmReset = $state(false);
+
 	async function reset() {
-		if (!confirm(`Start ${p.title} again? All your ticks will be cleared.`)) return;
+		confirmReset = false;
 		const before = progress;
 		progress = {};
 		picked = {};
@@ -254,8 +258,14 @@
 		</section>
 	{/each}
 
-	<Button variant="destructive" onclick={reset}>Start again</Button>
+	<Button variant="destructive" onclick={() => (confirmReset = true)}>Start again</Button>
 </main>
+
+<Sheet open={confirmReset} onclose={() => (confirmReset = false)} label="Start again">
+	<h2>Start {p.title} again?</h2>
+	<p>All your ticks will be cleared.</p>
+	<Button onclick={reset}>Clear my ticks</Button>
+</Sheet>
 
 <Sheet open={!!term} onclose={() => (term = null)} label={term?.meaning ?? ''}>
 	{#if term}
