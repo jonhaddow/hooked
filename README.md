@@ -38,3 +38,7 @@ Var in `wrangler.jsonc`: `GOOGLE_CLIENT_ID`. Secret (`wrangler secret put`): `GO
 ## Deploying
 
 Pushing to `main` deploys through Cloudflare Workers Builds, whose deploy command `npm run deploy:ci` applies D1 migrations first.
+
+## Installing on a phone
+
+Open https://hooked.app.haddow.me in Safari (iPhone) or Chrome (Android), sign in with Google, then Share → Add to Home Screen.
