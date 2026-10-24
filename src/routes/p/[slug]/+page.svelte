@@ -74,8 +74,7 @@
 		tap(key, step);
 	}
 
-	// Asked in a sheet, not confirm(): some phone browsers (in-app ones, home-screen
-	// apps) block confirm() and it quietly returns false.
+	// A sheet, not confirm(): some phone browsers block confirm() without a word.
 	let confirmReset = $state(false);
 
 	async function reset() {
