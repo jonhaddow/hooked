@@ -11,19 +11,26 @@ async function progressOf(db: DB, userId: number, patternId: number): Promise<Pr
 	return Object.fromEntries(rows.map((r) => [r.key, r.done]));
 }
 
+/** A stored pattern, with how many of its steps this person has done. */
+export async function withTotals(db: DB, userId: number, row: { id: number; data: string }) {
+	const data = JSON.parse(row.data) as Pattern;
+	return { data, ...totals(data, await progressOf(db, userId, row.id)) };
+}
+
 /** Every pattern, with how far this person has got. */
 export async function listPatterns(db: DB, userId: number) {
 	const rows = await db.select().from(pattern).orderBy(pattern.title);
 	return Promise.all(
 		rows.map(async (row) => {
-			const data = JSON.parse(row.data) as Pattern;
+			const { data, done, total } = await withTotals(db, userId, row);
 			return {
 				slug: row.slug,
 				title: row.title,
 				designer: row.designer,
 				craft: data.craft ?? 'crochet',
 				cover: data.cover ?? null,
-				...totals(data, await progressOf(db, userId, row.id))
+				done,
+				total
 			};
 		})
 	);

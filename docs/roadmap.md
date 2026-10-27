@@ -3,6 +3,7 @@
 ## Live
 
 - Patterns list with progress, search and All / Crochet / Knitting tabs; a pattern as tick-off steps with counts, repeated rounds, "Make N" copies, photos and tappable abbreviations; Carry on; Start again
+- Projects: each person's list of what they're making or planning, with a status, an optional pattern (its progress from the ticks; otherwise set by hand) and notes
 
 ## Next
 

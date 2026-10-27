@@ -1,4 +1,5 @@
 import { integer, index, primaryKey, sqliteTable, text } from 'drizzle-orm/sqlite-core';
+import { STATUSES } from '../../project.ts';
 
 /** People who can sign in (Google accounts). */
 export const user = sqliteTable('user', {
@@ -58,4 +59,26 @@ export const progress = sqliteTable(
 		at: text('at').notNull()
 	},
 	(t) => [primaryKey({ columns: [t.userId, t.patternId, t.key] })]
+);
+
+/**
+ * Something someone is making. A linked pattern's progress comes from their
+ * ticks; without one, `percent` is set by hand.
+ */
+export const project = sqliteTable(
+	'project',
+	{
+		id: integer('id').primaryKey({ autoIncrement: true }),
+		userId: integer('user_id')
+			.notNull()
+			.references(() => user.id, { onDelete: 'cascade' }),
+		name: text('name').notNull(),
+		patternId: integer('pattern_id').references(() => pattern.id, { onDelete: 'set null' }),
+		status: text('status', { enum: STATUSES }).notNull(),
+		percent: integer('percent').notNull().default(0),
+		notes: text('notes').notNull().default(''),
+		createdAt: text('created_at').notNull(),
+		updatedAt: text('updated_at').notNull()
+	},
+	(t) => [index('project_user_idx').on(t.userId)]
 );
