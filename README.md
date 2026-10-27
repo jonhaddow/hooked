@@ -7,6 +7,7 @@ Crochet patterns as tick-off checklists, as a phone web app.
 - Abbreviations in the steps can be tapped for their meaning, how-to and photos.
 - Each step shows the pattern's photos for it.
 - Progress is saved per person, and the page opens at the next step.
+- Projects: notes on what each person is making, linked to a pattern or not.
 
 Stack: SvelteKit (Svelte 5) on Cloudflare Workers, Drizzle ORM on Cloudflare D1 (photos included), Vitest and Playwright.
 

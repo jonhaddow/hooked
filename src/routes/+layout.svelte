@@ -17,6 +17,12 @@
 			icon: 'patterns',
 			active: path === '/' || path.startsWith('/p/')
 		},
+		{
+			href: '/projects',
+			label: 'Projects',
+			icon: 'projects',
+			active: path.startsWith('/projects')
+		},
 		{ href: '/settings', label: 'Settings', icon: 'settings', active: path === '/settings' }
 	]);
 
@@ -72,6 +78,10 @@
 							<path
 								d="M5 8.5c4 0 9 3 11 10M8.5 4c3 2 7.5 7 7.5 15.5M12 3.5c4 2 7 5 8.5 9.5M4 13c2.5-1 6 0 9 3"
 							/>
+						{:else if tab.icon === 'projects'}
+							<!-- A notebook. -->
+							<rect x="5" y="3" width="14" height="18" rx="2" />
+							<path d="M9 3v18M12 8h4M12 12h4" />
 						{:else}
 							<circle cx="12" cy="12" r="3" />
 							<path
@@ -94,7 +104,7 @@
 		left: 50%;
 		bottom: calc(12px + env(safe-area-inset-bottom));
 		translate: -50% 0;
-		width: min(calc(100% - 32px), 260px);
+		width: min(calc(100% - 32px), 340px);
 		height: var(--tabs);
 		padding: 6px;
 		border-radius: 999px;
@@ -104,7 +114,7 @@
 		border: 1px solid color-mix(in srgb, var(--ink) 8%, transparent);
 		box-shadow: 0 8px 28px rgb(0 0 0 / 0.12);
 		display: grid;
-		grid-template-columns: repeat(2, minmax(0, 1fr));
+		grid-template-columns: repeat(3, minmax(0, 1fr));
 	}
 	nav a {
 		display: flex;

@@ -3,7 +3,7 @@ import { image, pattern, progress } from './db/schema.ts';
 import type { DB } from './db/index.ts';
 import { totals, type Pattern, type Progress } from '../pattern.ts';
 
-async function progressOf(db: DB, userId: number, patternId: number): Promise<Progress> {
+export async function progressOf(db: DB, userId: number, patternId: number): Promise<Progress> {
 	const rows = await db
 		.select({ key: progress.key, done: progress.done })
 		.from(progress)
