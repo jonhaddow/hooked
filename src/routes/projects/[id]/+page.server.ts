@@ -1,5 +1,5 @@
 import { error, fail, redirect } from '@sveltejs/kit';
-import { STATUSES, type Status } from '#lib/project.ts';
+import { isStatus } from '#lib/project.ts';
 import { deleteProject, getProject, patternChoices, updateProject } from '#lib/server/projects.ts';
 import type { Actions, PageServerLoad } from './$types';
 
@@ -14,14 +14,16 @@ export const actions: Actions = {
 		const form = await request.formData();
 		const name = String(form.get('name') ?? '').trim();
 		if (!name) return fail(400, { error: 'Give it a name.' });
-		const status = String(form.get('status'));
+		const status = form.get('status');
+		if (!isStatus(status)) return fail(400, { error: 'Choose a status.' });
 		const patternId = Number(form.get('pattern')) || null;
-		if (patternId && !(await patternChoices(locals.db)).some((p) => p.id === patternId))
-			return fail(400, { error: 'No such pattern.' });
-		const percent = Math.min(100, Math.max(0, Math.round(Number(form.get('percent')) || 0)));
+		// A linked pattern's progress is its ticks; the slider's is kept for if it's unlinked.
+		const percent = patternId
+			? undefined
+			: Math.min(100, Math.max(0, Math.round(Number(form.get('percent')) || 0)));
 		const saved = await updateProject(locals.db, locals.user!.id, Number(params.id), {
 			name: name.slice(0, 200),
-			status: STATUSES.includes(status as Status) ? (status as Status) : 'planned',
+			status,
 			patternId,
 			percent,
 			notes: String(form.get('notes') ?? '').slice(0, 20000)

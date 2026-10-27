@@ -1,4 +1,5 @@
 import { integer, index, primaryKey, sqliteTable, text } from 'drizzle-orm/sqlite-core';
+import { STATUSES } from '../../project.ts';
 
 /** People who can sign in (Google accounts). */
 export const user = sqliteTable('user', {
@@ -73,7 +74,7 @@ export const project = sqliteTable(
 			.references(() => user.id, { onDelete: 'cascade' }),
 		name: text('name').notNull(),
 		patternId: integer('pattern_id').references(() => pattern.id, { onDelete: 'set null' }),
-		status: text('status', { enum: ['planned', 'making', 'finished'] }).notNull(),
+		status: text('status', { enum: STATUSES }).notNull(),
 		percent: integer('percent').notNull().default(0),
 		notes: text('notes').notNull().default(''),
 		createdAt: text('created_at').notNull(),

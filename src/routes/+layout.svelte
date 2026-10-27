@@ -114,7 +114,8 @@
 		border: 1px solid color-mix(in srgb, var(--ink) 8%, transparent);
 		box-shadow: 0 8px 28px rgb(0 0 0 / 0.12);
 		display: grid;
-		grid-template-columns: repeat(3, minmax(0, 1fr));
+		grid-auto-flow: column;
+		grid-auto-columns: minmax(0, 1fr);
 	}
 	nav a {
 		display: flex;

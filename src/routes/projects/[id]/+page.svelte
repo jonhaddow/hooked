@@ -63,17 +63,14 @@
 			</select>
 		</label>
 
-		{#if patternId && patternId === String(project.pattern?.id)}
+		<!-- A newly chosen pattern shows its progress once saved. -->
+		{#if project.pattern && patternId === String(project.pattern.id)}
 			<div class="progress">
 				<span class="bar" aria-hidden="true"><span style="width: {project.percent}%"></span></span>
 				<span class="muted small">{project.percent}% of the pattern ticked</span>
-				<Button variant="secondary" href="/p/{project.pattern?.slug}">Open pattern</Button>
+				<Button variant="secondary" href="/p/{project.pattern.slug}">Open pattern</Button>
 			</div>
-		{/if}
-		{#if patternId}
-			<!-- Unlinking the pattern keeps its progress. -->
-			<input type="hidden" name="percent" value={percent} />
-		{:else}
+		{:else if !patternId}
 			<label class="field">
 				Progress: {percent}%
 				<input
