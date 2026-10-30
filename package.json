@@ -5,7 +5,7 @@
 	"type": "module",
 	"scripts": {
 		"dev": "vite dev",
-		"build": "vite build && node scripts/wrap-worker.ts",
+		"build": "vite build",
 		"preview": "wrangler dev --port 4173",
 		"prepare": "svelte-kit sync && node scripts/gen-types.ts || echo ''",
 		"check": "node scripts/gen-types.ts && svelte-kit sync && svelte-check --tsconfig ./tsconfig.json && tsc -p src/service-worker",
