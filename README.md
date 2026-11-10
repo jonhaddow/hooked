@@ -2,14 +2,16 @@
 
 Crochet patterns as tick-off checklists, as a phone web app.
 
-- Each round or step has a tick; repeated rounds ("Rnd 6–12") count up a tap at a time.
-- "Make 4" parts are ticked off one copy at a time.
-- Abbreviations in the steps can be tapped for their meaning, how-to and photos.
-- Each step shows the pattern's photos for it.
-- Progress is saved per person, and the page opens at the next step.
-- Projects: notes on what each person is making, linked to a pattern or not.
+Each round or step of a pattern gets a tick, repeated rounds count up a tap at a time, and the page opens at the next step, so you never lose your place. Abbreviations can be tapped for their meaning and how-to, and a projects list keeps notes on what everyone is making.
 
-Stack: SvelteKit (Svelte 5) on Cloudflare Workers, Drizzle ORM on Cloudflare D1 (photos included), Vitest and Playwright.
+## Tech stack
+
+- [SvelteKit](https://svelte.dev) (Svelte 5) and TypeScript, as an installable PWA
+- [Cloudflare Workers](https://workers.cloudflare.com), with [D1](https://developers.cloudflare.com/d1/) (SQLite) through [Drizzle ORM](https://orm.drizzle.team), photos included
+- Google sign-in (OAuth with PKCE, shared code in [`auth`](https://github.com/jonhaddow/auth)) for an allowlist of users
+- [Tailwind CSS](https://tailwindcss.com) and [shadcn-svelte](https://shadcn-svelte.com)
+- [Vitest](https://vitest.dev) and [Playwright](https://playwright.dev) for tests
+- Deployed from `main` by Cloudflare Workers Builds
 
 ## Running locally
 
@@ -23,23 +25,3 @@ npm run dev    # the login page has dev-only "Sign in as" buttons
 ```
 
 Tests: `npm test` (unit), `npm run test:e2e` (Playwright), `npm run check` (types), `npm run lint`.
-
-## Adding a pattern
-
-Patterns aren't in git (they're bought). Put `pattern.json` (the `Pattern` type in `src/lib/pattern.ts`) and its photos (`images/<name>.jpg`) in `patterns/<slug>/`, then `node scripts/import-pattern.ts <slug> --remote`.
-
-## Sign-in
-
-Google OAuth. Only emails in the `user` table can sign in.
-
-## Configuration
-
-Var in `wrangler.jsonc`: `GOOGLE_CLIENT_ID`. Secret (`wrangler secret put`): `GOOGLE_CLIENT_SECRET`.
-
-## Deploying
-
-Pushing to `main` deploys through Cloudflare Workers Builds, whose deploy command `npm run deploy:ci` applies D1 migrations first.
-
-## Installing on a phone
-
-Open https://hooked.app.haddow.me in Safari (iPhone) or Chrome (Android), sign in with Google, then Share → Add to Home Screen.
