@@ -8,6 +8,7 @@ Crochet and knitting patterns as checklists, like a cookbook app: each round or 
 - Patterns are bought, so they never go in git: `patterns/<slug>/` (gitignored) holds `pattern.json` and its photos. The `import-pattern` skill (`.claude/skills/`) turns a PDF into one and loads it.
 - Re-importing keeps everyone's ticks as long as section and step ids don't change; progress keys are `<section>/<copy>/<step>`.
 - Pattern photos are base64 in D1's `image` table, served to signed-in people only.
+- Secrets: `GOOGLE_CLIENT_SECRET`.
 
 ## Review focus
 
