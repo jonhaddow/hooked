@@ -13,3 +13,5 @@ Crochet and knitting patterns as checklists, like a cookbook app: each round or 
 ## Review focus
 
 Progress keys staying stable across re-imports, ticks saving in order (the page queues them), D1 limits in the import script.
+
+- Pages scroll in the layout's `.scroll`, not the window, with the tab bar over it (so iOS can't strand it mid-screen). SvelteKit's scroll handling doesn't apply: the layout keeps scroll positions itself, and tapping the iPhone status bar no longer jumps to the top (tapping the open tab does).
