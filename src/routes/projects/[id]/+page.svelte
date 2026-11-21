@@ -42,14 +42,14 @@
 
 		<div class="segments" role="radiogroup" aria-label="Status">
 			{#each STATUSES as s (s)}
-				<label
-					><input
+				<label>
+					<input
 						type="radio"
 						name="status"
 						value={s}
 						checked={project.status === s}
-					/>{STATUS_NAMES[s]}</label
-				>
+					/>{STATUS_NAMES[s]}
+				</label>
 			{/each}
 		</div>
 
