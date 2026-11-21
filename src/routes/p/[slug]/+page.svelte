@@ -221,9 +221,9 @@
 								onclick={() => tap(key, step)}
 							>
 								{#if complete}
-									<svg viewBox="0 0 24 24" aria-hidden="true"
-										><path d="M5 12.5l4.5 4.5L19 7.5" /></svg
-									>
+									<svg viewBox="0 0 24 24" aria-hidden="true">
+										<path d="M5 12.5l4.5 4.5L19 7.5" />
+									</svg>
 								{:else if times > 1}
 									{done}/{times}
 								{/if}
@@ -238,9 +238,9 @@
 									<p class="muted small">
 										Tap after each round · {times - done} to go
 										{#if done > 0}
-											<button type="button" class="minus" onclick={() => set(key, done - 1)}
-												>Undo one</button
-											>
+											<button type="button" class="minus" onclick={() => set(key, done - 1)}>
+												Undo one
+											</button>
 										{/if}
 									</p>
 								{/if}
